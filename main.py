@@ -137,7 +137,7 @@ class MyGame(arcade.Window):
             self.player_sprite_list.draw()
 
     def update(self, delta_time):
-       # TODO: keep check of everything happening in the game
+       # TODO: keep track of everything happening in the game
     
     def on_key_press(self, key, modifiers):
         # TODO: keep track of which key has been pressed!
