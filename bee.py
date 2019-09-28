@@ -12,9 +12,6 @@ class Bee(arcade.Sprite):
 
     @classmethod
     def setup_bee(cls):
-        # initiate & place bee sprite
-        bee_sprite = arcade.Sprite("sprites/bumblebee_sprite.png", CHARACTER_SCALE_HALF)
-        bee_sprite.center_x = SPRITE_STARTING_X
-        bee_sprite.center_y = SPRITE_STARTING_Y
+        # TODO: initiate & place bee sprite, then retun the bee
+        
 
-        return bee_sprite
