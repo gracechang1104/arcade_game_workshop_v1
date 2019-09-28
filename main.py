@@ -137,75 +137,13 @@ class MyGame(arcade.Window):
             self.player_sprite_list.draw()
 
     def update(self, delta_time):
-        if self.state == State.MAIN_MENU:
-            if self.space_pressed:
-                self.state = State.PLAYING
-                self.setup()
-
-        elif self.state == State.PLAYING:
-            #game movement
-            self.bee_sprite.change_x = 0
-            self.bee_sprite.change_y = 0
-
-            if self.space_pressed:
-                self.bee_sprite.change_x = PLAYER_JUMP_SPEED
-                self.bee_sprite.change_y = PLAYER_JUMP_DISTANCE
-            else:
-                self.bee_sprite.change_x = PLAYER_MOVEMENT_SPEED
-
-            #check if bee has a flower
-            flower_hit_list = arcade.check_for_collision_with_list(self.bee_sprite, self.flowers_list)
-
-            for flower in flower_hit_list:
-                flower.remove_from_sprite_lists()
-                self.score = self.score + 1
-
-            #check if bee hit an obstacle
-            bottom_obstacle_hit_list = arcade.check_for_collision_with_list(self.bee_sprite, self.bottom_obstacles_list)
-            top_obstacle_hit_list = arcade.check_for_collision_with_list(self.bee_sprite, self.top_obstacles_list)
-
-            if len(bottom_obstacle_hit_list) != 0 or len(top_obstacle_hit_list) != 0:
-                self.bee_sprite.angle = -90
-                self.bee_sprite.change_y = 0
-                self.state = State.GAME_OVER
-                self.setup()
-
-            #kill obstacles & flowers and then make new ones so that it gives "scrolling" effect
-            if self.bee_sprite.center_x >= SCREEN_WIDTH:
-                self.bee_sprite.center_x = bee.SPRITE_STARTING_X
-                Obstacle.kill_obstacles(self.bottom_obstacles_list)
-                Obstacle.kill_obstacles(self.top_obstacles_list)
-                Obstacle.kill_obstacles(self.flowers_list)
-
-            if len(self.bottom_obstacles_list) == 0 and len(self.top_obstacles_list) == 0:
-                self.bottom_obstacles_list, self.top_obstacles_list = Obstacle.setup_obstacles(self.bottom_obstacles_list, self.top_obstacles_list)
-                self.flower = Flower.setup(self.flowers_list, self.bottom_obstacles_list, self.top_obstacles_list)
-
-            self.physics_engine.update()
-
-        elif self.state == State.GAME_OVER:
-            if self.n_pressed:
-                arcade.close_window()
-
-            if self.y_pressed:
-                self.state = State.MAIN_MENU
-                self.setup()
-
+       # TODO: keep check of everything happening in the game
+    
     def on_key_press(self, key, modifiers):
-        if key == arcade.key.SPACE:
-            self.space_pressed = True
-        elif key == arcade.key.Y:
-            self.y_pressed = True
-        elif key == arcade.key.N:
-            self.n_pressed = True
+        # TODO: keep track of which key has been pressed!
 
     def on_key_release(self, key, modifiers):
-        if key == arcade.key.SPACE:
-            self.space_pressed = False
-        elif key == arcade.key.Y:
-            self.y_pressed = False
-        elif key == arcade.key.N:
-            self.n_pressed = False
+        # TODO: keep track of which key has been released!
 
 
 def main():
